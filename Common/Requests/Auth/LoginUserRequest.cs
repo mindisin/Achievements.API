@@ -2,10 +2,13 @@
 
 namespace Common.Requests.Auth
 {
-    public record LoginUserRequest(
+    public class LoginUserRequest
+    {
         [Required]
-        string Email,
+        public string Email { get; set; }
 
         [Required]
-        string Password);
+        public string Password { get; set; }
+    }
+        
 }

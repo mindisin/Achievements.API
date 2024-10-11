@@ -6,33 +6,28 @@ namespace Achievements.API.Endpoints
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthEndpoint
+    public class AuthEndpoint : ControllerBase
     {
-        /*
-        public IEndpointRouteBuilder MapUsersEndpoints(this IEndpointRouteBuilder app)
+        private readonly IUserService _userService;
+        public AuthEndpoint(IUserService userService)
         {
-            app.MapPost("register", Register);
-
-            app.MapPost("login", Login);
-
-            return app;
+            _userService = userService;
         }
-        */
+
 
         [HttpPost("register")]
-        private async Task<IResult> Register(RegisterUserRequest request,
-            IUserService userService, CancellationToken cancellationToken)
+         public async Task<IResult> Register([FromBody] RegisterUserRequest request, CancellationToken cancellationToken)
         {
-            await userService.Register(request.UserName, request.Email, request.Password, cancellationToken);
+            await _userService.Register(request.UserName, request.Email, request.Password, cancellationToken);
 
             return Results.Ok();
         }
 
         [HttpPost("login")]
-        private async Task<IResult> Login(LoginUserRequest request, IUserService userService,
+        public async Task<IResult> Login([FromBody]LoginUserRequest request,
             CancellationToken cancellationToken)
         {
-            var token = await userService.Login(request.Email, request.Password, cancellationToken);
+            var token = await _userService.Login(request.Email, request.Password, cancellationToken);
 
             // сохранить токен в куки
 

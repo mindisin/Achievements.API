@@ -30,22 +30,22 @@ namespace Domain.Entities
         /// <summary>
         /// Дата рождения пользователя
         /// </summary>
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         /// <summary>
         /// Номер телефона пользователя
         /// </summary>
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// Токен для обновления JWT токена
         /// </summary>
-        public string RefreshToken { get; set; }
+        public string? RefreshToken { get; set; }
 
         /// <summary>
         /// Врнмя истечения действия RefreshToken'а
         /// </summary>
-        public DateTime RefreshTokenExpiry { get; set; }
+        public DateTime? RefreshTokenExpiry { get; set; }
 
         /// <summary>
         /// Подтвержден ли номер телефона
@@ -88,7 +88,8 @@ namespace Domain.Entities
         /// <summary>
         /// Список ролей данного пользователя
         /// </summary>
-        public List<Role> Roles { get; set; }
+        // TODO: убрать nullable и сделать seeder
+        public List<Role>? Roles { get; set; }
 
         /// <inheritdoc cref="IAuditableEntity"/>
         public DateTime CreateDate { get; set; }

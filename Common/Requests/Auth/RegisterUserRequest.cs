@@ -2,13 +2,15 @@
 
 namespace Common.Requests.Auth
 {
-    public record RegisterUserRequest(
+    public class RegisterUserRequest
+    {
         [Required]
-        string UserName,
+        public string UserName { get; set; }
 
         [Required]
-        string Password,
+        public string Password { get; set; }
 
         [Required]
-        string Email);
+        public string Email { get; set; }
+    }
 }
