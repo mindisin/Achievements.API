@@ -1,4 +1,6 @@
+using Achievements.API.Endpoints;
 using Application.Interfaces;
+using Domain.Options;
 using Persistence;
 using Persistence.Repositories;
 using Services.Services;
@@ -6,10 +8,12 @@ using Services.Services;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-// Add services to the container.
+services.Configure<JsonWebTokenOptions>(builder.Configuration.GetSection(nameof(JsonWebTokenOptions)));
 
+// Add services to the container.
 services.AddPersistenceLayer(builder.Configuration);
 services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
@@ -20,6 +24,8 @@ services.AddScoped<UserService>();
 
 services.AddScoped<IJsonWebTokenProvider, JsonWebTokenProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+services.AddAuthentication("Bearer").AddJwtBearer();
 
 
 
@@ -33,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapSwagger().RequireAuthorization();
 
 app.UseAuthorization();
 
