@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Requests.Auth
+namespace Common.Requests.Auth
 {
     public record RegisterUserRequest(
         [Required]

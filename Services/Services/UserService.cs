@@ -3,7 +3,7 @@ using Domain.Entities;
 
 namespace Services.Services
 {
-    public class UserService
+    public class UserService: IUserService
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly IUsersPepository _usersPepository;

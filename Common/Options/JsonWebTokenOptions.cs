@@ -1,4 +1,4 @@
-﻿namespace Domain.Options
+﻿namespace Common.Options
 {
     public class JsonWebTokenOptions
     {

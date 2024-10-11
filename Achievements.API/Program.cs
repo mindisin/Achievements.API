@@ -1,6 +1,6 @@
 using Achievements.API.Endpoints;
 using Application.Interfaces;
-using Domain.Options;
+using Common.Options;
 using Persistence;
 using Persistence.Repositories;
 using Services.Services;
@@ -26,8 +26,6 @@ services.AddScoped<IJsonWebTokenProvider, JsonWebTokenProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 services.AddAuthentication("Bearer").AddJwtBearer();
-
-
 
 var app = builder.Build();
 
